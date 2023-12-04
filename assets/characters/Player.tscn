@@ -142,6 +142,15 @@ margin_bottom = -165.0
 tint_under = Color( 0.211765, 0.203922, 0.203922, 1 )
 tint_progress = Color( 0, 1, 0.133333, 1 )
 
+[node name="ExperienceBar" parent="." instance=ExtResource( 3 )]
+margin_left = -371.0
+margin_top = -159.0
+margin_right = -181.0
+margin_bottom = -150.0
+value = 0.0
+tint_under = Color( 0.211765, 0.203922, 0.203922, 1 )
+tint_progress = Color( 0.0823529, 0.278431, 0.792157, 1 )
+
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]

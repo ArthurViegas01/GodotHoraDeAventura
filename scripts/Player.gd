@@ -13,7 +13,7 @@ var player_alive = true
 
 var attack_ip = false
 
-export (int) var speed
+export (int) var speed = 120
 
 
 func _physics_process(_delta: float) -> void:
@@ -31,7 +31,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		move()
 
-
+func _ready():
+	Global.player = self
 
 
 func move() -> void:
@@ -85,7 +86,7 @@ func _on_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health = health - 40
+		health = health - 5
 		enemy_attack_cooldown = false
 		$AttackCooldown.start()
 
@@ -113,7 +114,17 @@ func update_health():
 	var healthbar = $Healthbar
 	healthbar.max_value = 100
 	healthbar.value = health
-
+	
+	
+func add_experience(amount):
+	var xpbar = $ExperienceBar
+	xpbar.value += amount
+	if xpbar.value >= 40:
+		speed = 240
+		
+	if xpbar.value >= 30:
+		$deal_attack_timer.wait_time = 0
+	
 
 
 func _on_regen_timer_timeout():

@@ -3,6 +3,7 @@ extends KinematicBody2D
 onready var animation: AnimationPlayer = get_node("Animation")
 onready var sprite: Sprite = get_node("Sprite")
 
+
 var health = 100
 var player_inattack_zone = false
 var can_take_damage = true
@@ -77,6 +78,8 @@ func deal_with_damage():
 			if health <= 0:
 				is_dying = true
 				animation.play("Death")
+				var player = $Player
+				Global.player.add_experience(20)
 				self.queue_free()
 
 
