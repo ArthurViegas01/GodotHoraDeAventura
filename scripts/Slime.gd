@@ -70,7 +70,7 @@ func _on_body_exited(body):
 func deal_with_damage():
 	if player_inattack_zone and Global.player_currently_attacking == true:
 		if can_take_damage == true:
-			health = health - 20
+			health = health - 40
 			print("VIDA DO SLIME: ", health)
 			$take_damage_cooldown.start()
 			can_take_damage = false

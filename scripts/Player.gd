@@ -15,8 +15,9 @@ var attack_ip = false
 
 export (int) var speed
 
+
 func _physics_process(_delta: float) -> void:
-	move()
+	
 	verify_direction()
 	attack()
 	animate()
@@ -27,8 +28,12 @@ func _physics_process(_delta: float) -> void:
 	if health <= 0:
 		player_alive = false
 		health = 0
+	else:
+		move()
 
-	
+
+
+
 func move() -> void:
 	var direction_vector: Vector2 = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -44,8 +49,12 @@ func animate() -> void:
 		return
 		
 		
-	if player_alive == false:
-		animation.play("Death")
+	if not player_alive:
+		if animation.current_animation != "Death":
+			animation.play("Death")
+			yield(get_tree().create_timer(0.8), "timeout")
+			self.queue_free()
+		return
 	else:
 		if velocity != Vector2.ZERO:
 			animation.play("Run")
@@ -76,7 +85,7 @@ func _on_hitbox_body_exited(body):
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
-		health = health - 10
+		health = health - 40
 		enemy_attack_cooldown = false
 		$AttackCooldown.start()
 
@@ -102,17 +111,14 @@ func _on_deal_attack_timer_timeout():
 	
 func update_health():
 	var healthbar = $Healthbar
+	healthbar.max_value = 100
 	healthbar.value = health
-	
-	if health >= 100:
-		healthbar.visible = false
-	else:
-		healthbar.visible = true
+
 
 
 func _on_regen_timer_timeout():
 	if health < 100:
-		health = health + 20
+		health = health + 10
 		if health > 100:
 			health = 100
 	if health <= 0:

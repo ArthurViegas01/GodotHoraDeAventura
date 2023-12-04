@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Come Along With Me (Island Song) [8 Bit Tribute to Adventure Time & Ashley Eriksson].mp3-4a317d48009b0abc11c0bdbc734d61e1.mp3str"
+
+[deps]
+
+source_file="res://Come Along With Me (Island Song) [8 Bit Tribute to Adventure Time & Ashley Eriksson].mp3"
+dest_files=[ "res://.import/Come Along With Me (Island Song) [8 Bit Tribute to Adventure Time & Ashley Eriksson].mp3-4a317d48009b0abc11c0bdbc734d61e1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
